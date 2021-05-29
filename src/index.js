@@ -58,6 +58,6 @@ httpServer.listen(PORT, () => {
     `🚀 Server ready at http://localhost:${PORT}${server.graphqlPath}`,
   );
   console.log(
-    `🚀 Subscriptions ready at ws://localhost:${PORT}${server.subscriptionsPath}`,
+    `🚀 Subscriptions read at ws://localhost:${PORT}${server.subscriptionsPath}`,
   );
 });
