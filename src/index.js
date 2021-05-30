@@ -25,6 +25,8 @@ const resolvers = {
   Post,
 }
 const server = new ApolloServer({
+  interceptor:true,
+  playground:true,
   typeDefs,
   resolvers,
   subscriptions: {
@@ -49,9 +51,9 @@ const server = new ApolloServer({
    
   },
 });
-// const httpServer = http.createServer(app);
+const httpServer = http.createServer(app);
 server.applyMiddleware({ app });
-// server.installSubscriptionHandlers(httpServer);
+server.installSubscriptionHandlers(httpServer);
 
 app.listen(PORT, () => {
   console.log(
