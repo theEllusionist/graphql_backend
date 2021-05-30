@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "heroku-postbuild":"prisma generate",
     "start": "nodemon src/index.js"
   },
   "author": "",
