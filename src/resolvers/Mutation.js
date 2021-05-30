@@ -63,32 +63,20 @@ const Mutation = {
     if(!user_id) {
       throw new Error("Authentication required")
     }
-    const post =await ctx.prisma.posts.findFirst({
-      where:{
-        user_id:user_id
-      }
-    })
-    if(!post) {
-      await ctx.prisma.posts.deleteMany({
-        where:{
-          auser_id:user_id
-        }
-      })
-    }
-
-    const comment =await ctx.prisma.comments.findFirst({
-      where:{
-        user_id:user_id
-      }
-    })
-    if(!comment) {
-      await ctx.prisma.posts.deleteMany({
-        where:{
-          user_id:args_id
-        }
-      })
-    }
-
+    await ctx.prisma.users.update({
+      where: {
+        id: user_id
+      },
+      data: {
+        comments: {
+          deleteMany: {},
+        },
+        posts: {
+          deleteMany: {},
+        },
+        
+      },
+    });
     return await ctx.prisma.users.delete({
       where:{id:user_id}
     })
@@ -180,22 +168,20 @@ const Mutation = {
         }
       }
     })
-    console.log(post)
     if(!post) {
       throw new Error("Post not found")
     }
 
-    const comments = await ctx.prisma.comments.findFirst({
-      where:{post_id:args.id}
-    });
-
-    if(!comments) {
-      await ctx.prisma.comments.delete({
-        where:{
-          post_id:args.id
+    await ctx.prisma.posts.update({
+      where:{
+        id:args.id
+      },
+      data:{
+        comments:{
+          deleteMany:{}
         }
-      })
-    }
+      }
+    })
     post= await ctx.prisma.posts.delete({
       where:{
         id:args.id
