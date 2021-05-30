@@ -1,7 +1,7 @@
-const { ApolloServer, PubSub, gql } = require('apollo-server-express');
+const { ApolloServer, PubSub, gql } = require('apollo-server');
 const express = require('express');
 const pubsub = new PubSub();
-const http = require('http');
+// const http = require('http');
 const PORT = process.env.PORT || 4000;
 const typeDefs = require('./schema.js')
 const Query = require("./resolvers/Query")
@@ -51,15 +51,18 @@ const server = new ApolloServer({
    
   },
 });
-const httpServer = http.createServer(app);
-server.applyMiddleware({ app });
-server.installSubscriptionHandlers(httpServer);
+// const httpServer = http.createServer(app);
+// server.applyMiddleware({ app });
+// server.installSubscriptionHandlers(httpServer);
 
-httpServer.listen(PORT, () => {
-  console.log(
-    `🚀 Server ready at http://localhost:${PORT}${server.graphqlPath}`,
-  );
-  console.log(
-    `🚀 Subscriptions read at ws://localhost:${PORT}${server.subscriptionsPath}`,
-  );
+// httpServer.listen(PORT, () => {
+//   console.log(
+//     `🚀 Server ready at http://localhost:${PORT}${server.graphqlPath}`,
+//   );
+//   console.log(
+//     `🚀 Subscriptions read at ws://localhost:${PORT}${server.subscriptionsPath}`,
+//   );
+// });
+server.listen({ port: PORT }).then(({ url }) => {
+  console.log(`🚀 Server ready at http://localhost:${PORT}${server.graphqlPath}`);
 });
