@@ -49,11 +49,11 @@ const server = new ApolloServer({
    
   },
 });
-const httpServer = http.createServer(app);
+// const httpServer = http.createServer(app);
 server.applyMiddleware({ app });
-server.installSubscriptionHandlers(httpServer);
+// server.installSubscriptionHandlers(httpServer);
 
-httpServer.listen(PORT, () => {
+app.listen(PORT, () => {
   console.log(
     `🚀 Server ready at http://localhost:${PORT}${server.graphqlPath}`,
   );
