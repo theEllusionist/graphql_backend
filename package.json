@@ -14,14 +14,16 @@
     "@prisma/client": "^2.23.0",
     "apollo-server": "^2.25.0",
     "bcrypt": "^5.0.1",
-    "env-cmd": "^10.1.0",
     "graphql": "^15.5.0",
     "jsonwebtoken": "^8.5.1",
-    "nodemon": "^2.0.7",
     "prisma": "^2.23.0",
     "uuid": "^8.3.2"
   },
   "engine": {
     "node": "14.16.1"
+  },
+  "devDependencies": {
+    "env-cmd": "^10.1.0",
+    "nodemon": "^2.0.7"
   }
 }
