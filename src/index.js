@@ -12,10 +12,10 @@ const Subscription = require("./resolvers/Subscription");
 const Mutation = require("./resolvers/Mutation");
 const {PrismaClient} = require('@prisma/client')
 const getUserId = require("./utils/utils")
-
+const cors = require('cors')
 const prisma = new PrismaClient();
 const app = express();
-// app.use("*", cors());
+app.use("*", cors());
 const resolvers = {
   Query,
   Mutation,
