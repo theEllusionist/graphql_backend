@@ -1,9 +1,18 @@
 const User = {
-  posts(parent,args,ctx,info) {
-    return ctx.prisma.users.findUnique({
+  async posts(parent,args,ctx,info) {
+    const {user_id}=ctx
+    return await ctx.prisma.users.findUnique({
       where:{id:parent.id}
     }
-    ).posts();
+    ).posts({
+      where:{
+        OR:[{
+          user_id:user_id
+        },{
+          published:true
+        }]
+      }
+    });
   },
   comments(parent,args,ctx,info) {
     return ctx.prisma.users.findUnique({
