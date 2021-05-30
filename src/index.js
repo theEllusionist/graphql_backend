@@ -25,7 +25,7 @@ const resolvers = {
   Post,
 }
 const server = new ApolloServer({
-  interceptor:true,
+  introspection:true,
   playground:true,
   typeDefs,
   resolvers,
