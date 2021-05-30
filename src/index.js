@@ -1,5 +1,5 @@
 const { ApolloServer, PubSub, gql } = require('apollo-server');
-const express = require('express');
+// const express = require('express');
 const pubsub = new PubSub();
 // const http = require('http');
 const PORT = process.env.PORT || 4000;
