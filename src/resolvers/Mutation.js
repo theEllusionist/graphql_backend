@@ -1,7 +1,6 @@
 const jwt = require("jsonwebtoken")
 const bcrypt = require("bcrypt")
 const {v4} = require("uuid")
-
 const Mutation = {
   async signUp(parent,args,ctx,info) {
     const password =await bcrypt.hash(args.data.password,10);
